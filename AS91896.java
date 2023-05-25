@@ -3,31 +3,38 @@
  * Write a description of class AS91896 here.
  *
  * @author (Helene)
- * @version (a version number or a date)
+ * @Start Date (23/5/23)
+ * @Version Date (26/5/23)
+ * @version (2)
+ * I'm creatting conways game of life
  */
+import java.util.Scanner;
 public class AS91896
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
      * Constructor for objects of class AS91896
      */
     public AS91896()
     {
-        // initialise instance variables
-        x = 0;
+        //Variables
+        int arrySize = 0;
+        int cellSize = 0;
+        System.out.println("Conways Game Of Life");
+        
+        //Player picking game size/array size
+        System.out.println("Pick Your Size");
+        Scanner playerSize;
+        playerSize= new Scanner(System.in);
+        arrySize=playerSize.nextInt();
+        //The array
+        for (int x=0;x<arrySize;x++) {
+            /*System.out.print(x+" ");*/
+            for (int y=0;y<arrySize;y++) {
+                System.out.print("0");
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
 }

@@ -8,6 +8,7 @@
  * @version (1)
  * I'm creatting conways game of life
  */
+import java.util.Scanner;
 public class AS91896
 {
     /**
@@ -17,9 +18,14 @@ public class AS91896
     {
         // initialise instance variables
         System.out.println("Conways Game Of Life");
-        for (int x=0;x<10;x++) {
+        int arrySize = 30;
+        System.out.println("Pick Your Size");
+        Scanner playerSize;
+        playerSize= new Scanner(System.in);
+        arrySize=playerSize.nextInt();
+        for (int x=0;x<arrySize;x++) {
             /*System.out.print(x+" ");*/
-            for (int y=0;y<10;y++) {
+            for (int y=0;y<arrySize;y++) {
                 System.out.print("0");
                 System.out.print(" ");
             }

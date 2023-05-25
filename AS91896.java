@@ -2,7 +2,7 @@
 /**
  * Write a description of class AS91896 here.
  *
- * @author (your name)
+ * @author (Helene)
  * @version (a version number or a date)
  */
 public class AS91896

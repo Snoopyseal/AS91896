@@ -2,32 +2,29 @@
 /**
  * Write a description of class AS91896 here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Helene)
+ * @Start Date (23/5/23)
+ * @Version Date (25/5/23)
+ * @version (1)
+ * I'm creatting conways game of life
  */
 public class AS91896
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
      * Constructor for objects of class AS91896
      */
     public AS91896()
     {
         // initialise instance variables
-        x = 0;
+        System.out.println("Conways Game Of Life");
+        for (int x=0;x<10;x++) {
+            /*System.out.print(x+" ");*/
+            for (int y=0;y<10;y++) {
+                System.out.print("0");
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
 }

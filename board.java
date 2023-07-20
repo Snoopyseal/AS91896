@@ -4,12 +4,13 @@
  *
  * @author (Helene)
  * @Start Date (23/5/23)
- * @Version Date (29/5/23)
- * @Version (3)
+ * @Version Date (21/7/23)
+ * @Version (6)
  * I'm creatting conways game of life
  */
 //2d buillin if statmnt if true x in not 0
 import java.util.Scanner;
+import java.util.Random;
 public class board
 {
     /**
@@ -17,17 +18,28 @@ public class board
      */
     public board()
     {
+        //reacteing a instance of random calss called rand
+        Random rand = new Random();
+        
         //Variables
         int arraySize = 0;
         int cellSize = 0;
         boolean[][] cellHasLife;
         System.out.println("Conways Game Of Life");
-        
         //Player picking game size/array size
         System.out.println("Pick Your Size");
         Scanner playerSize;
         playerSize= new Scanner(System.in);
         arraySize=playerSize.nextInt();
+        //Player picking how many cells to start with
+        
+        System.out.println("Pick How Many Cell's To start Off With");
+        Scanner cellStartSize;
+        cellStartSize= new Scanner(System.in);
+        cellSize=cellStartSize.nextInt();
+        //grenerating random numbers(inintergers) in range of 0-arraysize -1
+        
+        
         
         
         //deffine boolean arry for the cell has life
@@ -35,15 +47,11 @@ public class board
         
         
         //Player picking how many cells to start with
-        System.out.println("Pick How Many Cell's To start Off With");
-        Scanner cellStartSize;
-        cellStartSize= new Scanner(System.in);
-        cellSize=cellStartSize.nextInt();
-        
-
-        cellHasLife[5][5] =true;
-        cellHasLife[3][4] =true;
-        cellHasLife[2][9] =true;
+        for(int i=0; i <cellSize;i++){
+            int rand_int1 = rand.nextInt(arraySize);
+            int rand_int2 = rand.nextInt(arraySize);
+            cellHasLife[rand_int1][rand_int2] =true;
+        }
         
         // genarteing the array
         for (int x=0;x <arraySize;x++){
@@ -52,6 +60,7 @@ public class board
                 if (cellHasLife[x][y]==true){
                     //System.out.print("True"); 
                     System.out.print("⬛");
+                    
                     }
                 else {
                     //System.out.print("False");
@@ -71,8 +80,10 @@ public class board
                     //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
                         if (cellHasLife[x+1][y]==true){
                          // if (x<arraySize||y<arraySize){ 
+                        cellHasLife[x][y]= true;
                         System.out.print("cell bellow is alive "+x+","+y);
                         // }
+                        
                            System.out.println(" ");
                         }
                     else {
@@ -99,17 +110,8 @@ public class board
             }
             System.out.println();
         }
-        //check though each cel
-    
-        // //The array
-        // for (int x=0;x<arraySize;x++) {
-            // /*System.out.print(x+" ");*/
-            // for (int y=0;y<arraySize;y++) {
-                // System.out.print("⬜");
-                // System.out.print(" ");
-            // }
-            // System.out.println();
-        // }
+        //print random intergers
+        
     }
 
 }

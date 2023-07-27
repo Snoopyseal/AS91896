@@ -86,40 +86,51 @@ public class board
                     //making sure that we aren't checking out size or the arrays size
                     if(x<arraySize-1){
                         //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
-                            if (cellHasLife[x+1][y]==true){
+                        if (cellHasLife[x+1][y]==true){
                              // if (x<arraySize||y<arraySize){ 
                                  //trying to change if there are two next to that are alive in any directio
                                 cellHasLife[x][y]= true;
-                            System.out.print("cell bellow is alive "+x+","+y);
+                            //System.out.print("cell bellow is alive "+x+","+y);
                             // }
                             
-                               System.out.println(" ");
-                            }
-                        else {
-                        //System.out.print("False");
-                        // System.out.print(" ");
+                              // System.out.println(" ");
                         }
-                        // System.out.print(" ");
-                        }
+                    }
                     
                     if(y<arraySize-1){
                         //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
-                            if (cellHasLife[x][y+1]==true){
+                        if (cellHasLife[x][y+1]==true){
                              // if (x<arraySize||y<arraySize){ 
-                            System.out.print("cell next to is alive "+x+","+y);
+                            //System.out.print("cell next to is alive "+x+","+y);
                                 cellHasLife[x][y]= true;
                             // }
-                               System.out.println(" ");
+                               //System.out.println(" ");
                             }
-                        else {
-                        //System.out.print("False");
-                        // System.out.print(" ");
                         }
-                        // System.out.print(" ");
+                
+                    if(y>0){
+                        //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
+                        if (cellHasLife[x][y-1]==true){
+                             // if (x<arraySize||y<arraySize){ 
+                            //System.out.print("cell next to is alive "+x+","+y);
+                                cellHasLife[x][y]= true;
+                            // }
+                               //System.out.println(" ");
+                            }
                         }
-                    
                         
-                    
+                    if(x>0){
+                        //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
+                        if (cellHasLife[x-1][y]==true){
+                             // if (x<arraySize||y<arraySize){ 
+                                 //trying to change if there are two next to that are alive in any directio
+                                cellHasLife[x][y]= true;
+                            //System.out.print("cell bellow is alive "+x+","+y);
+                            // }
+                            
+                              // System.out.println(" ");
+                        }
+                    }
                 }
                 System.out.println();
             }

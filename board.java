@@ -55,7 +55,7 @@ public class board
         }
         
         // genarteing the array
-            while  (counter<30)
+            while  (counter<10)
             {
             System.out.println(counter);
             counter++;
@@ -83,59 +83,53 @@ public class board
             //debuging
             for(int x=0;x <arraySize;x++){
                 for (int y=0;y <arraySize;y++){
-                    //making sure that we aren't checking out size or the arrays size
+                    //making sure that we aren't checking out size or the arrays size in the x row
                     if(x<arraySize-1){
-                        //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
+                        //cheking twards
                         if (cellHasLife[x+1][y]==true){
-                             // if (x<arraySize||y<arraySize){ 
-                                 //trying to change if there are two next to that are alive in any directio
+                                //trying to change if there are two next to that are alive in any directio
                                 cellHasLife[x][y]= true;
-                            //System.out.print("cell bellow is alive "+x+","+y);
-                            // }
-                            
-                              // System.out.println(" ");
-                        }
+                            }
+                            else {
+                                //cellHasLife[x][y]=false;
+                            }
                     }
-                    
+                     //making sure that we aren't checking out size or the arrays size in the y collem
                     if(y<arraySize-1){
-                        //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
+                        //cheking twoards 0
                         if (cellHasLife[x][y+1]==true){
-                             // if (x<arraySize||y<arraySize){ 
-                            //System.out.print("cell next to is alive "+x+","+y);
+                                //System.out.print("cell next to is alive "+x+","+y);
                                 cellHasLife[x][y]= true;
-                            // }
-                               //System.out.println(" ");
+                            }
+                            else {
+                                //cellHasLife[x][y]=false;
                             }
                         }
-                
+                    
                     if(y>0){
-                        //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
+                        //checking back away from 0
                         if (cellHasLife[x][y-1]==true){
-                             // if (x<arraySize||y<arraySize){ 
-                            //System.out.print("cell next to is alive "+x+","+y);
+                                //System.out.print("cell next to is alive "+x+","+y);
                                 cellHasLife[x][y]= true;
-                            // }
-                               //System.out.println(" ");
+                            }
+                            else {
+                                //cellHasLife[x][y]=false;
                             }
                         }
-                        
+                    
                     if(x>0){
-                        //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
+                        //checking upwards away from 0
                         if (cellHasLife[x-1][y]==true){
-                             // if (x<arraySize||y<arraySize){ 
                                  //trying to change if there are two next to that are alive in any directio
                                 cellHasLife[x][y]= true;
-                            //System.out.print("cell bellow is alive "+x+","+y);
-                            // }
-                            
-                              // System.out.println(" ");
-                        }
+                            }
+                            else {
+                                //cellHasLife[x][y]=false;
+                            }
                     }
                 }
                 System.out.println();
             }
-            //print random intergers
-            
         }  
     }
 }   

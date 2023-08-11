@@ -11,6 +11,11 @@
 //2d buillin if statmnt if true x in not 0
 import java.util.Scanner;
 import java.util.Random;
+        //Methods
+        //  public twoards (int x, int y){
+        //code
+         //   }
+
 public class board
 {
     /**
@@ -18,118 +23,123 @@ public class board
      */
     public board()
     {
-        //reacteing a instance of random calss called rand
-        Random rand = new Random();
-        
-        //Variables
-        //counter is for testing purposes
-        int counter = 0;
-        int arraySize = 0;
-        int cellSize = 0;
-        boolean[][] cellHasLife;
-        System.out.println("Conways Game Of Life");
-        //Player picking game size/array size
-        System.out.println("Pick Your Size");
-        Scanner playerSize;
-        playerSize= new Scanner(System.in);
-        arraySize=playerSize.nextInt();
-        //Player picking how many cells to start with
-        
-        System.out.println("Pick How Many Cell's To start Off With");
-        Scanner cellStartSize;
-        cellStartSize= new Scanner(System.in);
-        cellSize=cellStartSize.nextInt();
-        //grenerating random numbers(inintergers) in range of 0-arraysize -1
-        
-        
-        
-        //deffine boolean arry for the cell has life
-        cellHasLife = new boolean[arraySize][arraySize];
-        
-        
-        //Player picking how many cells to start with
-        for(int i=0; i <cellSize;i++){
-            int rand_int1 = rand.nextInt(arraySize);
-            int rand_int2 = rand.nextInt(arraySize);
-            cellHasLife[rand_int1][rand_int2] =true;
-        }
-        
-        // genarteing the array
-            while  (counter<10)
-            {
-            System.out.println(counter);
-            counter++;
-            //celaring the screen  
-            System.out.print('\u000C');
+            //reacteing a instance of random calss called rand
+            Random rand = new Random();
             
-            for (int x=0;x <arraySize;x++){
-                for (int y=0;y <arraySize;y++){
-                    // checking what cells are true and false
-                    if (cellHasLife[x][y]==true){
-                        //System.out.print("True"); 
-                        System.out.print("⬛");
+            //Variables
+            //counter is for testing purposes
+            int counter = 0;
+            int arraySize = 0;
+            int cellSize = 0;
+            boolean[][] cellHasLife;
+            
+        
+            System.out.println("Conways Game Of Life");
+            //Player picking game size/array size
+            System.out.println("Pick Your Size");
+            Scanner playerSize;
+            playerSize= new Scanner(System.in);
+            arraySize=playerSize.nextInt();
+            //Player picking how many cells to start with
+            
+            System.out.println("Pick How Many Cell's To start Off With");
+            Scanner cellStartSize;
+            cellStartSize= new Scanner(System.in);
+            cellSize=cellStartSize.nextInt();
+            //grenerating random numbers(inintergers) in range of 0-arraysize -1
+           
+            //deffine boolean arry for the cell has life
+            cellHasLife = new boolean[arraySize][arraySize];
+            
+            
+            
+            
+            //Player picking how many cells to start with
+            for(int i=0; i <cellSize;i++){
+                int rand_int1 = rand.nextInt(arraySize);
+                int rand_int2 = rand.nextInt(arraySize);
+                cellHasLife[rand_int1][rand_int2] =true;
+            }
+            
+            // genarteing the array
+                while  (counter<10)
+                {
+                System.out.println(counter);
+                counter++;
+                //celaring the screen  
+                System.out.print('\u000C');
+                System.out.println("Watch as the change");
+                for (int x=0;x <arraySize;x++){
+                    for (int y=0;y <arraySize;y++){
+                        // checking what cells are true and false
+                        if (cellHasLife[x][y]==true){
+                            //System.out.print("True"); 
+                            System.out.print("⬛");
+                            
+                            }
+                        else {
+                            //System.out.print("False");
+                            System.out.print("⬜");
+                        }
+                        System.out.print(" ");
+                    }
+                    System.out.println();
+                }
+                System.out.println();
+                //checking for life
+                //debuging
+                for(int x=0;x <arraySize;x++){
+                    for (int y=0;y <arraySize;y++){
+                        //making sure that we aren't checking out size or the arrays size in the x row
+                        if(x<arraySize-1){
+                            //cheking twards
+                            if (cellHasLife[x+1][y]==true){
+                                    //trying to change if there are two next to that are alive in any directio
+                                    cellHasLife[x][y]= true;
+                                }
+                                else {
+                                    //cellHasLife[x][y]=false;
+                                }
+                        }
+                         //making sure that we aren't checking out size or the arrays size in the y collem
+                        if(y<arraySize-1){
+                            //cheking twoards 0
+                            if (cellHasLife[x][y+1]==true){
+                                    //System.out.print("cell next to is alive "+x+","+y);
+                                    cellHasLife[x][y]= true;
+                                }
+                                else {
+                                    //cellHasLife[x][y]=false;
+                                }
+                            }
                         
+                        if(y>0){
+                            //checking back away from 0
+                            if (cellHasLife[x][y-1]==true){
+                                    //System.out.print("cell next to is alive "+x+","+y);
+                                    cellHasLife[x][y]= true;
+                                }
+                                else {
+                                    //cellHasLife[x][y]=false;
+                                }
+                            }
+                        
+                        if(x>0){
+                            //checking upwards away from 0
+                            if (cellHasLife[x-1][y]==true){
+                                     // if(){
+                                             //trying to change if there are two next to that are alive in any directio
+                                            cellHasLife[x][y]= true;
+                                        // }
+                                    
+                                }
+                                else {
+                                    //cellHasLife[x][y]=false;
+                                }
                         }
-                    else {
-                        //System.out.print("False");
-                        System.out.print("⬜");
                     }
-                    System.out.print(" ");
+                    System.out.println();
                 }
-                System.out.println();
-            }
-            System.out.println();
-            //checking for life
-            //debuging
-            for(int x=0;x <arraySize;x++){
-                for (int y=0;y <arraySize;y++){
-                    //making sure that we aren't checking out size or the arrays size in the x row
-                    if(x<arraySize-1){
-                        //cheking twards
-                        if (cellHasLife[x+1][y]==true){
-                                //trying to change if there are two next to that are alive in any directio
-                                cellHasLife[x][y]= true;
-                            }
-                            else {
-                                //cellHasLife[x][y]=false;
-                            }
-                    }
-                     //making sure that we aren't checking out size or the arrays size in the y collem
-                    if(y<arraySize-1){
-                        //cheking twoards 0
-                        if (cellHasLife[x][y+1]==true){
-                                //System.out.print("cell next to is alive "+x+","+y);
-                                cellHasLife[x][y]= true;
-                            }
-                            else {
-                                //cellHasLife[x][y]=false;
-                            }
-                        }
-                    
-                    if(y>0){
-                        //checking back away from 0
-                        if (cellHasLife[x][y-1]==true){
-                                //System.out.print("cell next to is alive "+x+","+y);
-                                cellHasLife[x][y]= true;
-                            }
-                            else {
-                                //cellHasLife[x][y]=false;
-                            }
-                        }
-                    
-                    if(x>0){
-                        //checking upwards away from 0
-                        if (cellHasLife[x-1][y]==true){
-                                 //trying to change if there are two next to that are alive in any directio
-                                cellHasLife[x][y]= true;
-                            }
-                            else {
-                                //cellHasLife[x][y]=false;
-                            }
-                    }
-                }
-                System.out.println();
-            }
-        }  
-    }
+           }  
+        }
 }   

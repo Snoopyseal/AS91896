@@ -69,7 +69,7 @@ public class board
             }
             
             // genarteing the array
-                while  (counter<30)
+                while  (counter<100)
                 {
                 System.out.println("counter "+ counter);
                 counter++;
@@ -145,6 +145,11 @@ public class board
                         if((x<arraySize -1 && y>0) && (cellHasLife[x+1][y-1] == true))
                         {
                             countN[x][y] ++;
+                        
+                        }
+                        if ((x<arraySize -1 && y<arraySize -1) && (cellHasLife[x][y] == true))
+                        {
+                            countN[x][y] ++;
                         }
                         // else{
                             // //System.out.println("dead");
@@ -155,14 +160,14 @@ public class board
                 for (int x=0;x <arraySize;x++){
                     //test
                     for (int y=0;y <arraySize;y++){
-                        if(cellHasLife[x][y] == true && countN[x][y] < 2) {
-                            cellHasLife[x][y] = false;
-                        }
+                        // if(cellHasLife[x][y] == true && countN[x][y] < 1) {
+                            // cellHasLife[x][y] = false;
+                        // }
                         if (cellHasLife[x][y] = true && countN[x][y] < 4)
                         {
                             cellHasLife[x][y] = false;
                         }
-                        if (cellHasLife[x][y] =true && countN[x][y] > 3)
+                        if (cellHasLife[x][y] =true && countN[x][y] > 2)
                         {
                             cellHasLife[x][y] = false;
                         }
@@ -174,7 +179,7 @@ public class board
                         // {
                             // cellHasLife[x][y] = false;
                         // }
-                        System.out.print("CeNext."+ countN[x][y]+" ");                    
+                        //System.out.print("CeNext."+ countN[x][y]+" ");                    
                         countN[x][y] = 0;
                         } 
                         }

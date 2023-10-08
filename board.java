@@ -34,26 +34,44 @@ public class board
             int cellSize = 0;
             boolean[][] cellHasLife;
             int[][] countN;
+            boolean startAnEnd;
+            boolean countEndanStart;
             
-        
-            System.out.println("Conways Game Of Life");
-            //Player picking game size/array size
-            System.out.println("Pick Your Size");
-            Scanner playerSize;
-            playerSize= new Scanner(System.in);
-            arraySize=playerSize.nextInt();
-            //Player picking how many cells to start with
-            
-            System.out.println("Pick How Many Cell's To start Off With");
-            Scanner cellStartSize;
-            cellStartSize= new Scanner(System.in);
-            cellSize=cellStartSize.nextInt();
-            //grenerating random numbers(inintergers) in range of 0-arraysize -1
+            startAnEnd = false;
+            countEndanStart = false;
+            while (startAnEnd == false)
+            {
+                System.out.println("Conways Game Of Life");
+                //Player picking game size/array size
+                System.out.println("Pick Your Size");
+                Scanner playerSize;
+                playerSize= new Scanner(System.in);
+                arraySize=playerSize.nextInt();
+                //Player picking how many cells to start with
+                if (arraySize >= 4 && arraySize <= 180){
+                    startAnEnd= true;}
+                else{
+                    System.out.println(arraySize+ " is not a valid character. Please try again.");
+                }
+            }
+            while (countEndanStart == false)
+            {
+                System.out.println("Pick How Many Cell's To start Off With");
+                Scanner cellStartSize;
+                cellStartSize= new Scanner(System.in);
+                cellSize=cellStartSize.nextInt();
+                //grenerating random numbers(inintergers) in range of 0-arraysize -1
+                    if (cellSize >= 4 && cellSize <= 180){
+                    countEndanStart= true;}
+                else{
+                    System.out.println(" is not a valid character. Please try again.");
+                }
+            }
            
             //deffine boolean arry for the cell has life
             cellHasLife = new boolean[arraySize][arraySize];
             countN = new int[arraySize][arraySize];
-            
+        
             //insalsing countN array
             for(int x=0;x <arraySize;x++){
                 for(int y=0;y <arraySize;y++){
@@ -67,7 +85,6 @@ public class board
                 int rand_int2 = rand.nextInt(arraySize);
                 cellHasLife[rand_int1][rand_int2] =true;
             }
-            
             // genarteing the array
                 while  (counter<100)
                 {

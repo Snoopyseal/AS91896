@@ -35,6 +35,8 @@ public class board
         boolean countEndanStart; // a while loop for catching
         int cellLifeCounter =0; // how many cells are alive in a int
         boolean lastRun = false; // flag to stop game
+        boolean[][] cellChecker;        
+        
         
         startAnEnd = false;
         countEndanStart = false;
@@ -94,7 +96,7 @@ public class board
             if (arraySize >= 4 && arraySize <= 40){ // checking if less than 4 or more than 180
                 startAnEnd= true;} // changes the while to true to stop in
             else{ //sends us back and tells us what we did wrong
-             System.out.println("Not a valid character. Please pick between 4 - 180");
+             System.out.println("Not a valid character. Please pick between 4 - 40");
              System.out.println();
             }
         }
@@ -128,7 +130,7 @@ public class board
                 if (cellSize >= 4 && cellSize <= 1600){ // chedcking if less than 4 or mor than 180
                 countEndanStart= true;} // changes the while to true to stop in
             else{//sends us back and tells us what we did wrong
-                System.out.println("Not a valid character. Please pick between 4 - 180");
+                System.out.println("Not a valid character. Please pick between 4 - 1600");
                 System.out.println();
             }
         }
@@ -137,6 +139,7 @@ public class board
         //define boolean array for the cell has life
         cellHasLife = new boolean[arraySize][arraySize]; // setting boolean array that needs data from previous var
         countN = new int[arraySize][arraySize];// setting up int array that needs data from previous var
+        cellChecker = new boolean[arraySize][arraySize];
         
         
         //if count is greater than array x - if less that add and do this for y also and the angles
@@ -150,11 +153,22 @@ public class board
         
         //creating the randommised effect for what cells are alive
         for(int i=1; i <= cellSize;i++){
-            int rand_int1 = rand.nextInt(arraySize -1); // X - picks a random number bettwen 0 and arraySize for our x cord
-            int rand_int2 = rand.nextInt(arraySize -1); // Y - picks a random number bettwen 0 and arraySize for our y cord
-            cellHasLife[rand_int1][rand_int2] =true; // turning those random numbers into x and y cords for cells that are alive
-            // if(Arrays.equals(rand_int1,rand_int2)){
-            // }
+            int randInt1 = rand.nextInt(arraySize); // X - picks a random number bettwen 0 and arraySize for our x cord
+            int randInt2 = rand.nextInt(arraySize); // Y - picks a random number bettwen 0 and arraySize for our y cord
+            cellHasLife[randInt1][randInt2] =true; // turning those random numbers into x and y cords for cells that are alive
+            // cellChecker[randInt1][randInt2] =true;
+            // for (int x=0;x <arraySize;x++){
+                // for (int y=0;y <arraySize;y++){
+                    // if(cellHasLife[randInt1][randInt2] == cellChecker[randInt1][randInt2]){
+                        // System.out.println("true");
+                        // x = x-1;
+                        // y = y-1;
+                    // } else{
+                        
+                    // cellHasLife[randInt1][randInt2] =true; // turning those random numbers into x and y cords for cells that are alive
+                    // }
+                    // }
+                // }
         }
         // when the numbers are added to a list i need to compare it to the 2darray list and then if each number is n
         

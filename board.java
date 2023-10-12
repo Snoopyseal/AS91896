@@ -149,14 +149,16 @@ public class board
         }
         
         //creating the randommised effect for what cells are alive
-        for(int i=0; i <= cellSize;i++){
+        for(int i=1; i <= cellSize;i++){
             int rand_int1 = rand.nextInt(arraySize -1); // X - picks a random number bettwen 0 and arraySize for our x cord
             int rand_int2 = rand.nextInt(arraySize -1); // Y - picks a random number bettwen 0 and arraySize for our y cord
             cellHasLife[rand_int1][rand_int2] =true; // turning those random numbers into x and y cords for cells that are alive
+            // if(Arrays.equals(rand_int1,rand_int2)){
+            // }
         }
+        // when the numbers are added to a list i need to compare it to the 2darray list and then if each number is n
         
-        
-        
+        //https://www.geeksforgeeks.org/compare-two-arrays-java/
         
         
         // generating the array

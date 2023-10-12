@@ -1,16 +1,18 @@
 
 /**
- * Write a description of class board here.
+ * 
  *
  * @author (Helene)
  * @Start Date (23/5/23)
- * @Version Date (21/7/23)
- * @Version (6)
- * I'm creatting conways game of life
+ * @Version Date (9/10/23)
+ * @Version (11)
+ * @Git (https://github.com/Snoopyseal/AS91896)
+ * I'm creating Conway's game of life as a learning exercise for CSC223 @ WHS
  */
-//2d buillin if statmnt if true x in not 0
 import java.util.Scanner;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 public class board
 {
     /**
@@ -18,100 +20,275 @@ public class board
      */
     public board()
     {
-        //reacteing a instance of random calss called rand
-        Random rand = new Random();
-        
-        //Variables
-        int arraySize = 0;
-        int cellSize = 0;
-        boolean[][] cellHasLife;
-        System.out.println("Conways Game Of Life");
-        //Player picking game size/array size
-        System.out.println("Pick Your Size");
-        Scanner playerSize;
-        playerSize= new Scanner(System.in);
-        arraySize=playerSize.nextInt();
-        //Player picking how many cells to start with
-        
-        System.out.println("Pick How Many Cell's To start Off With");
-        Scanner cellStartSize;
-        cellStartSize= new Scanner(System.in);
-        cellSize=cellStartSize.nextInt();
-        //grenerating random numbers(inintergers) in range of 0-arraysize -1
-        
-        
-        
-        
-        //deffine boolean arry for the cell has life
-        cellHasLife = new boolean[arraySize][arraySize];
-        
-        
-        //Player picking how many cells to start with
-        for(int i=0; i <cellSize;i++){
-            int rand_int1 = rand.nextInt(arraySize);
-            int rand_int2 = rand.nextInt(arraySize);
-            cellHasLife[rand_int1][rand_int2] =true;
-        }
-        
-        // genarteing the array
-        for (int x=0;x <arraySize;x++){
-            for (int y=0;y <arraySize;y++){
-                // checking what cells are true and false
-                if (cellHasLife[x][y]==true){
-                    //System.out.print("True"); 
-                    System.out.print("⬛");
-                    
-                    }
-                else {
-                    //System.out.print("False");
-                    System.out.print("⬜");
-                }
-                System.out.print(" ");
-            }
+            //reacting a instance of random calls called rand
+            Random rand = new Random();
+            
+            //Variables
+            //counter is for testing purposes
+            int counter = 0;
+            int arraySize = 0;
+            int cellSize = 0;
+            boolean[][] cellHasLife;
+            int[][] countN;
+            boolean startAnEnd;
+            boolean countEndanStart;
+            int cellTotalDeadCounter =0;
+            
+            startAnEnd = false;
+            countEndanStart = false;
+            
+            //rules 
+            System.out.println("Conways Game Of Life");
             System.out.println();
-        }
-        System.out.println();
-        //checking for life
-        //debuging
-        for(int x=0;x <arraySize;x++){
-            for (int y=0;y <arraySize;y++){
-                //making sure that we aren't checking out size or the arrays size
-                if(x<arraySize-1){
-                    //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
-                        if (cellHasLife[x+1][y]==true){
-                         // if (x<arraySize||y<arraySize){ 
-                        cellHasLife[x][y]= true;
-                        System.out.print("cell bellow is alive "+x+","+y);
-                        // }
-                        
-                           System.out.println(" ");
-                        }
-                    else {
-                    //System.out.print("False");
-                    // System.out.print(" ");
-                    }
-                    // System.out.print(" ");
-                    }
+            System.out.println("Conways is a simulation based 'game'");
+            System.out.println();
+            System.out.println("Rules");
+            System.out.println();
+            System.out.println();
+            System.out.println("For a space that is populated:");
+            System.out.println();
+            System.out.println("Each cell with one or no neighbours dies, as if by solitude.");
+            System.out.println();
+            System.out.println("Each cell with four or more neighbours dies, as if by overpopulation.");
+            System.out.println();
+            System.out.println("Each cell with two or three neighbours it survives.");
+            System.out.println();
+            System.out.println();
+            System.out.println("For a space that is empty or unpopulated:");
+            System.out.println();
+            System.out.println("Each cell with three neighbours becomes populated.");
+            System.out.println();
+            System.out.println("You will pick the grid size that your Cell's will live on and how many live there to start with ");
+            System.out.println();
+            System.out.println();
+            
+            while (startAnEnd == false) // this repeats until the player has put betwen 4-180
+            {
                 
-                if(y<arraySize-1){
-                    //cheking though agreasnet cells, if the cell bellow me is true it'd printing out
-                        if (cellHasLife[x][y+1]==true){
-                         // if (x<arraySize||y<arraySize){ 
-                        System.out.print("cell next to is alive "+x+","+y);
-                        // }
-                           System.out.println(" ");
-                        }
-                    else {
-                    //System.out.print("False");
-                    // System.out.print(" ");
-                    }
-                    // System.out.print(" ");
-                    }
-            }
-            System.out.println();
-        }
-        //print random intergers
+                //Player picking game size/array size
+                System.out.println("Pick Your Size");
+                System.out.println();
+                System.out.println("A number bettwen 4-40 using the keypads");
+                System.out.println();
+                Scanner playerSize; //setting up scanner
+                playerSize= new Scanner(System.in); //allows player to input
+                
+                //Stops player from inputting letters
+                try //trying the code before needed for catching
+                {
+                    arraySize = playerSize.nextInt(); // getting the player imput
+                }
         
-    }
+                catch (java.util.InputMismatchException e) // catching the error message if letters are put in
+                {
+                    System.out.println(); 
+                }
+                
+                
+                
+                //stops player input being to small or big
+                if (arraySize >= 4 && arraySize <= 40){ // checking if less than 4 or more than 180
+                    startAnEnd= true;} // changes the while to true to stop in
+                else{ //sends us back and tells us what we did wrong
+                 System.out.println("Not a valid character. Please pick between 4 - 180");
+                 System.out.println();
+                }
+            }
+            
+            while (countEndanStart == false)// this repeats until the player has put betwen 4-180
+            {
+                //Player picking how many cells to start with
+                System.out.println("Pick How Many Cell's To start Off With");
+                System.out.println();
+                
+                System.out.println("A number between 4-1600 using the keypads");
+                System.out.println();
+                
+                Scanner cellStartSize; //setting up scanner
+                cellStartSize= new Scanner(System.in);
+                
+                //Stops player from inputing letters
+                try//trying the code before, needed for catching
+                {
+                    cellSize=cellStartSize.nextInt();// getting the player input
+                }
+        
+                catch (java.util.InputMismatchException e)// catching the error message if letters are put in
+                {
+                    System.out.println();
+                }
+                
+                
+                
+                //stops player input being to small or big
+                    if (cellSize >= 4 && cellSize <= 1600){ // chedcking if less than 4 or mor than 180
+                    countEndanStart= true;} // changes the while to true to stop in
+                else{//sends us back and tells us what we did wrong
+                    System.out.println("Not a valid character. Please pick between 4 - 180");
+                    System.out.println();
+                }
+            }
+            //generating random numbers(inintergers) in range of 0-arraysize -1
+            
+            //define boolean array for the cell has life
+            cellHasLife = new boolean[arraySize][arraySize]; // setting boolean array that needs data from previous var
+            countN = new int[arraySize][arraySize];// setting up int array that needs data from previous var
+            
+            
+            //if count is greater than array x - if less that add and do this for y also and the angles
+        
+            //initialising countN array - this is to count if a cell is alive near other cells
+            for(int x=0;x <arraySize;x++){ //setting the arrays x value
+                for(int y=0;y <arraySize;y++){ //setting the arrays Y value
+                    countN[x][y] =0; // defining where in the boolean x and y will sit
+                }
+            }
+            
+            //creating the randommised effect for what cells are alive
+            for(int i=0; i <= cellSize;i++){
+                int rand_int1 = rand.nextInt(arraySize -1); // X - picks a random number bettwen 0 and arraySize for our x cord
+                int rand_int2 = rand.nextInt(arraySize -1); // Y - picks a random number bettwen 0 and arraySize for our y cord
+                cellHasLife[rand_int1][rand_int2] =true; // turning those random numbers into x and y cords for cells that are alive
+            }
+            
+            
+            
+            
+            
+            // generating the array
+                while  (counter<100) //how many times it will run before stopping
+                {
+                //debugging message of time/ how many times the code runs for stopping
+                //System.out.println("counter "+ counter);
+                
+                counter++; // adding to our counter
+                try{  //this is a delay so the action doesn't happen so fast we can't see it
+                    TimeUnit.SECONDS.sleep(1); 
+                }
+                catch(Exception e){System.out.print(e);}
+                
+                System.out.print('\u000C'); // clears the screen
+                System.out.println("Watch as the cells change");
+                System.out.println();
+                
+                for (int x=0;x <arraySize;x++){
+                    //above is the array for the x Row
+                    for (int y=0;y <arraySize;y++){
+                        //above is the array for the Y collumn
+                        // checking what cells are true and false
+                        if (cellHasLife[x][y]==true){
+                            //System.out.print("True"); 
+                            System.out.print("⬛"); // this is what an alive cell should look like
+                            
+                            }
+                        else {
+                            //System.out.print("False");
+                            System.out.print("⬜"); //this is what a dead cell should look like
+                        }
+                        System.out.print(" "); // gives them so space
+                    }
+                    System.out.println();
+                }
+                System.out.println();
+                
+                //checking cells next too to see if they are alive to create more
+                    for (int x=0;x <arraySize;x++){
+                    for (int y=0;y <arraySize;y++){
+                        //checking alive cells
+                        
+                        //checking to the right on x
+                        if((x<arraySize -1) && (cellHasLife[x+1][y] == true))
+                        {
+                            countN[x][y] ++; //adds a number to the y or x
+                        }
+                        //checking down
+                        if((y<arraySize -1) && (cellHasLife[x][y+1] == true))
+                        {
+                            countN[x][y] ++;//adds a number to the y or x
+                        }
+                        
+                        //checking to the left
+                        if((x>0) && (cellHasLife[x-1][y] == true))
+                        {
+                            countN[x][y] ++;//adds a number to the y or x
+                        }
+                        //checking up
+                        if((y>0) && (cellHasLife[x][y-1] == true))
+                        {
+                            countN[x][y] ++;//adds a number to the y or x
+                        }
+                        //checking to the left and up
+                        if((x>0 && y>0) && (cellHasLife[x-1][y-1] == true))
+                        {
+                            countN[x][y] ++;//adds a number to the y or x
+                        }
+                        //checking to the right and down
+                        if((x<arraySize -1 && y<arraySize -1) && (cellHasLife[x+1][y+1] == true))
+                        {
+                            countN[x][y] ++;//adds a number to the y or x
+                        }
+                        //checking to the left and down
+                        if((x>0 && y<arraySize -1) && (cellHasLife[x-1][y+1] == true))
+                        {
+                            countN[x][y] ++;//adds a number to the y or x
+                        }
+                        //checking to the right and up
+                        if((x<arraySize -1 && y>0) && (cellHasLife[x+1][y-1] == true))
+                        {
+                            countN[x][y] ++;//adds a number to the y or x
+                        }
+                        //checking to 
+                        // if ((x<arraySize -1 && y<arraySize -1) && (cellHasLife[x][y] == true))
+                        // {
+                            // countN[x][y] ++;//adds a number to the y or x
+                        // }
+                        //debugging message
+                        //System.out.print(countN[x][y]+" ");
+                    }
+                }
+                //something ups herer
+                for (int x=0;x <arraySize;x++){
+                    for (int y=0;y <arraySize;y++){
+                        // if(cellHasLife[x][y] == true && countN[x][y] < 1) {
+                            // cellHasLife[x][y] = false;
+                        // }
+                        //this is out games logic // the rulles
+                        if (cellHasLife[x][y] = true && countN[x][y] < 4) //more than four cell dies
+                        {
+                            cellHasLife[x][y] = false;
+                        }
+                        if (cellHasLife[x][y] =true && countN[x][y] > 2) //less than two dies
+                        {
+                            cellHasLife[x][y] = false;
+                        }
+                        if (cellHasLife[x][y] = false && countN[x][y] == 3) // creates a new cell if three are alive
+                        {
+                            cellHasLife[x][y] = true;
+                        }  
+                        if (cellHasLife[x][y] = true && countN[x][y] == 3) // keeps cell alive if has three neighbours
+                        {
+                            cellHasLife[x][y] = true;
+                        } 
+                        //if it doesn't fit into any of these it stays the same
+                        countN[x][y] = 0;
+                        
+                        //stops the game if all cells die
+                        System.out.println(cellHasLife[x][y]);
+                        System.out.println(cellTotalDeadCounter);
+                        if (cellHasLife[x][y] = false)
+                            {
+                              cellTotalDeadCounter++;
+                              System.out.println(cellTotalDeadCounter);
+                            }
+                        if (cellTotalDeadCounter >= arraySize)
+                        {
+                            counter =100;
+                            System.out.println("All Cells Have Died");
+                            System.exit(0);
+                        }
+                    } 
+                }
+            }
+        }
+}  
 
-}

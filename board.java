@@ -36,7 +36,7 @@ public class board
         int cellLifeCounter =0; // how many cells are alive in a int
         boolean lastRun = false; // flag to stop game
         boolean cellChecker =true;  
-        boolean cellChecker2 =false;
+        int cellChecker2 =0;
         
         
         startAnEnd = false;
@@ -155,19 +155,65 @@ public class board
             int randInt1 = rand.nextInt(arraySize); // X - picks a random number bettwen 0 and arraySize for our x cord
             int randInt2 = rand.nextInt(arraySize); // Y - picks a random number bettwen 0 and arraySize for our y cord
             cellChecker = true;
-            cellChecker2= false;
-            //while(cellChecker = true){
-            if(cellHasLife[randInt1][randInt2] && randInt1 != arraySize){
-                    cellHasLife[randInt1++][randInt2] =true;
-                    cellChecker = false;
-                } else if(cellHasLife[randInt1][randInt2] && randInt1 !=0){
-                    cellHasLife[randInt1--][randInt2] =true;
-                    cellChecker = false;
-                }else{
-                    cellHasLife[randInt1][randInt2] =true; // turning those random numbers into x and y cords for cells that are alive
-                    cellChecker = false;
+            if (cellChecker = true){
+                //cellChecker = false;
+                try //trying the code before needed for catching
+                {
+                    if(cellHasLife[randInt1][randInt2] && randInt1 != arraySize){ // checks if the new rant int is the same
+                        if(cellHasLife[randInt1][randInt2] && randInt2 != arraySize){
+                            cellHasLife[randInt1][randInt2++] =true;
+                        } else if(cellHasLife[randInt1][randInt2] && randInt2 !=0){
+                            cellHasLife[randInt1][randInt2--] =true;
+                            cellChecker = true;
+                        }else{
+                            cellHasLife[randInt1++][randInt2] =true;
+                            cellChecker = true;
+                        }
+                    } else if(cellHasLife[randInt1][randInt2] && randInt1 !=0){
+                        if(cellHasLife[randInt1][randInt2] && randInt2 != arraySize){
+                            cellHasLife[randInt1][randInt2++] =true;
+                        } else if(cellHasLife[randInt1][randInt2] && randInt2 !=0){
+                            cellHasLife[randInt1][randInt2--] =true;
+                            cellChecker = true;
+                        }else{
+                            cellHasLife[randInt1--][randInt2] =true;
+                            cellChecker = true;
+                        }
+                    }else{
+                        if(cellHasLife[randInt1][randInt2] && randInt2 != arraySize){
+                            cellHasLife[randInt1][randInt2++] =true;
+                        } else if(cellHasLife[randInt1][randInt2] && randInt2 !=0){
+                            cellHasLife[randInt1][randInt2--] =true;
+                            cellChecker = true;
+                        }else{
+                            cellHasLife[randInt1][randInt2] =true; // turning those random numbers into x and y cords for cells that are alive
+                            cellChecker = false;
+                        }
+                    }
                 }
-            
+        
+                catch (ArrayIndexOutOfBoundsException e) // catching the error message if letters are put in
+                {
+                    System.out.print("Stuck loobing in First Try "); //debuggin message if it gets stuck
+                }
+                // try //trying the code before needed for catching
+                // {
+                    // if(cellHasLife[randInt1][randInt2] && randInt2 != arraySize){
+                        // cellHasLife[randInt1][randInt2++] =true;
+                    // } else if(cellHasLife[randInt1][randInt2] && randInt2 !=0){
+                        // cellHasLife[randInt1][randInt2--] =true;
+                        // cellChecker = true;
+                    // }else{
+                        // cellHasLife[randInt1][randInt2] =true; // turning those random numbers into x and y cords for cells that are alive
+                        // cellChecker = false;
+                    // }
+                // }
+        
+                // catch (ArrayIndexOutOfBoundsException e) // catching the error message if letters are put in
+                // {
+                    // System.out.print("Stuck loobing in Second Try"); //debuggin message if it gets stuck
+                // }
+                }
             }
             
             
